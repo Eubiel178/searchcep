@@ -21,7 +21,7 @@ function App() {
   
 
   return (
-    <main>
+    <div className="app">
       <h1 className="title">Buscar Cep</h1>
 
       <form className="form">
@@ -39,7 +39,7 @@ function App() {
           <p><strong>Localidade:</strong> {cep.localidade} - {cep.uf}</p>
         </div>
       )}
-    </main>
+    </div>
   )
 }
 
