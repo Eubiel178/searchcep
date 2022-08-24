@@ -43,9 +43,15 @@
 }
 
 .infoCep {
+    height: 5.5em;
     background-color: #fff;
     margin-top: 2em;
     border-radius: 10px;
     padding: 1em;
     
+}
+
+.invalid {
+    text-align: center;
+    padding-top: 1em;
 }

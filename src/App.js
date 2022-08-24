@@ -4,18 +4,19 @@ import { useState } from 'react'
 import api from "./services/api";
 
 function App() {
-  const[input, setInput] = useState()
-  const[cep, setCep] = useState()
+  const[input, setInput] = useState("")
+  const[cep, setCep] = useState({})
   
   async function searchCep(e) {
     e.preventDefault()
 
     try {
       const response = await api.get(`${input}/json`)
-      setCep(response.data)
+      setCep(response)
+      console.log(response)
       setInput("")
     } catch (error) {
-      console.log(error)
+      setCep(error.name)
     }
   }
   
@@ -32,11 +33,17 @@ function App() {
         </button>
       </form>
 
-      {cep &&(
+      {cep.status == 200 &&(
         <div className="infoCep">
-          <p><strong>Cep:</strong> {cep.cep}</p>
-          <p><strong>ddd:</strong> {cep.ddd}</p>
-          <p><strong>Localidade:</strong> {cep.localidade} - {cep.uf}</p>
+          <p><strong>Cep:</strong> {cep.data.cep}</p>
+          <p><strong>ddd:</strong> {cep.data.ddd}</p>
+          <p><strong>Localidade:</strong> {cep.data.localidade} - {cep.data.uf}</p>
+        </div>
+      )}
+
+      {cep == "AxiosError" &&(
+        <div className="infoCep">
+          <p className="invalid"><strong>CEP inválido!!</strong></p>
         </div>
       )}
     </div>
