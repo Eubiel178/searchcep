@@ -14,10 +14,11 @@ function App() {
       const response = await api.get(`${input}/json`)
       setCep(response)
       console.log(response)
-      setInput("")
     } catch (error) {
       setCep(error.name)
     }
+    
+    setInput("")
   }
   
 
